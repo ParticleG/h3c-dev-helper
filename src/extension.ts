@@ -1,14 +1,25 @@
 import * as vscode from 'vscode';
+import { CreateIssue } from './webviews/CreateIssue/provider';
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('"h3c-dev-helper" activated');
 
-	let disposable = vscode.commands.registerCommand('h3c-dev-helper.helloWorld', () => {
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from H3C Dev Helper!');
-	});
+	const createIssue = new CreateIssue(context.extensionUri);
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(vscode.window.registerWebviewViewProvider(
+		CreateIssue.viewId,
+		createIssue
+	));
+
+	context.subscriptions.push(vscode.commands.registerCommand(
+		'h3c-dev-helper.new-issue',
+		() => createIssue.setInfo(
+			"Test.c",
+			"testFunc",
+			114514,
+			1919810
+		)
+	));
 }
 
 export function deactivate() {
