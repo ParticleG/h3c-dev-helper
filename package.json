@@ -1,18 +1,27 @@
 {
+  "repository": "https://github.com/ParticleG/h3c-dev-helper",
   "name": "h3c-dev-helper",
-  "displayName": "H3C Dev Helper",
-  "description": "A helper extention to cooperate with H3C development tools",
   "version": "0.0.1",
+  "publisher": "Particle_G",
   "engines": {
     "vscode": "^1.71.0"
   },
+  "license": "MIT",
+  "displayName": "H3C Dev Helper",
+  "description": "A helper extention to cooperate with H3C development tools",
   "categories": [
-    "Other"
+    "Linters",
+    "Visualization",
+    "Testing"
   ],
-  "activationEvents": [
-    "onCommand:h3c-dev-helper.helloWorld"
+  "keywords": [
+    "h3c",
+    "comware"
   ],
+  "galleryBanner": {},
+  "preview": true,
   "main": "./out/extension.js",
+  "browser": "./dist/web/extension.js",
   "contributes": {
     "commands": [
       {
@@ -21,14 +30,16 @@
       }
     ]
   },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "badges": [],
+  "markdown": "github",
+  "qna": "marketplace",
+  "sponsor": {
+    "url": "https://"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/vscode": "^1.71.0",
     "@types/glob": "^7.2.0",
@@ -41,5 +52,20 @@
     "mocha": "^10.0.0",
     "typescript": "^4.7.4",
     "@vscode/test-electron": "^2.1.5"
-  }
+  },
+  "extensionPack": [],
+  "extensionDependencies": [],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "icon": "https://github.com/ParticleG/h3c-dev-helper/blob/main/icon.png"
 }
