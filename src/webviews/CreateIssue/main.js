@@ -9,9 +9,18 @@ function setInfo(data) {
 window.addEventListener("load", () => {
     const submitButton = document.getElementById("btn-submit");
     submitButton.addEventListener("click", () => {
+        const filename = document.getElementById("field-filename").value;
+        const functionName = document.getElementById("field-funcion-name").value;
+        const position = document.getElementById("field-position").value;
         vscode.postMessage({
             action: "info",
-            data: { text: "Hey there partner! 🤠" },
+            data: {
+                text: JSON.stringify({
+                    "filename": filename,
+                    "functionName": functionName,
+                    "position": position
+                })
+            },
         });
     });
 });

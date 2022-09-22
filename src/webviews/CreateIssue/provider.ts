@@ -69,14 +69,6 @@ export class CreateIssue implements vscode.WebviewViewProvider {
             "main.js"
         ));
 
-        const styleUri = webview.asWebviewUri(vscode.Uri.joinPath(
-            this._extensionUri,
-            "src",
-            "webviews",
-            "CreateIssue",
-            "style.css"
-        ));
-
         return /*html*/ `
         <!DOCTYPE html>
         <html lang="en">
@@ -86,32 +78,29 @@ export class CreateIssue implements vscode.WebviewViewProvider {
             <meta name="viewport" content="width=device-width,initial-scale=1.0">
             <script type="module" src="${toolkitUri}"></script>
             <script type="module" src="${mainUri}"></script>
-            <link rel="stylesheet" href="${styleUri}">
+            <link href="https://cdn.jsdelivr.net/npm/@mdi/font@^6.0.0/css/materialdesignicons.min.css" rel="stylesheet"
+                type="text/css">
+            <link href="https://cdn.jsdelivr.net/npm/quasar@2.8.3/dist/quasar.prod.css" rel="stylesheet" type="text/css">
             <title>Create Issue</title>
         </head>
         
         <body>
-            <div>
-                <section>
-                    <vscode-dropdown>
-                        <vscode-option>User #1</vscode-option>
-                        <vscode-option>User #2</vscode-option>
-                        <vscode-option>User #3</vscode-option>
-                    </vscode-dropdown>
-                </section>
-                <section>
+            <q-page class="flex row justify-start q-pa-sm">
+                <div class="col-grow col-sm-10 col-md-8 col-lg-6 col-xl-4 column q-gutter-y-xs">
+                    <div class="column">
+                        <div class="text-caption">Issuer Name</div>
+                        <vscode-dropdown>
+                            <vscode-option>User #1</vscode-option>
+                            <vscode-option>User #2</vscode-option>
+                            <vscode-option>User #3</vscode-option>
+                        </vscode-dropdown>
+                    </div>
                     <vscode-text-field id="field-filename">Issue filename</vscode-text-field>
-                </section>
-                <section>
                     <vscode-text-field id="field-funcion-name">Issue function name</vscode-text-field>
-                </section>
-                <section>
                     <vscode-text-field id="field-position">Issue position (Line & Column)</vscode-text-field>
-                </section>
-                <section>
                     <vscode-button id="btn-submit">Submit</vscode-button>
-                </section>
-            </div>
+                </div>
+            </q-page>
         </body>
         
         </html>
